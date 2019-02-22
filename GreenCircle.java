@@ -1,18 +1,24 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
 class GreenCircle {
     JFrame frame;
     ThisPanel panel;
+    Timer timer;
+    int x = 0;
+    int y = 0;
 
     GreenCircle() {
         frame = new JFrame();
         panel = new ThisPanel();
+        timer = new Timer(10, new TimerListener());
         frame.add(panel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(400, 400);
         frame.setVisible(true);
-        panel.move();
+        timer.start();
+        //panel.move();
     }
 
     public static void main(String[] args) {
@@ -20,8 +26,6 @@ class GreenCircle {
     }
 
     class ThisPanel extends JPanel {
-        int x = 0;
-        int y = 0;
         @Override 
         public void paintComponent(Graphics g) {
             Color green = new Color(0, 255, 0);
@@ -32,7 +36,7 @@ class GreenCircle {
             g.fillOval(x, y, 100, 100);
         }
         
-        public void move() {
+        /*public void move() {
             while (true) {
                 x++;
                 y++;
@@ -43,6 +47,14 @@ class GreenCircle {
                 }
                 repaint();
             }
+        }*/
+    }
+    
+    class TimerListener implements ActionListener {
+        public void actionPerformed(ActionEvent event) {
+            x++;
+            y++;
+            panel.repaint();
         }
     }
 }
