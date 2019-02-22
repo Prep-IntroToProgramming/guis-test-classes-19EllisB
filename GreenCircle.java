@@ -8,6 +8,8 @@ class GreenCircle {
     Timer timer;
     int x = 0;
     int y = 0;
+    boolean xPos = true;
+    boolean yPos = true;
 
     GreenCircle() {
         frame = new JFrame();
@@ -35,26 +37,29 @@ class GreenCircle {
             g.setColor(green);
             g.fillOval(x, y, 100, 100);
         }
-        
-        /*public void move() {
-            while (true) {
-                x++;
-                y++;
-                try {
-                    Thread.sleep(17);
-                } catch (InterruptedException e) {
-                    //
-                }
-                repaint();
-            }
-        }*/
     }
-    
+
     class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent event) {
-            x++;
-            y++;
-            panel.repaint();
+            if (xPos) {
+                x++;
+            } else {
+                x--;
+            }
+            if (yPos) {   
+                y++;
+            } else {
+                y--;
+            }
+            
+            if (x <= 0) {
+                xPos = true;
+            }
+            if (y <= 0) {
+                yPos = true;
+            }
+            
+            panel.repaint();            
         }
     }
 }
