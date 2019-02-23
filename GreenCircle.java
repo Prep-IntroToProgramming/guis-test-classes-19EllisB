@@ -6,6 +6,7 @@ class GreenCircle {
     JFrame frame;
     ThisPanel panel;
     Timer timer;
+    int bSpeed;//speed of the ball px/tick
     int bWidth;//width of the ball
     int bHeight;//height of the ball
     int x = 0; //records x position of the ball from the upper right hand corner
@@ -13,7 +14,12 @@ class GreenCircle {
     boolean xPos = true; //true if moving in the positive x direction
     boolean yPos = true; //true if moving in the positive y direction
 
-    GreenCircle(int bWidth, int bHeight) {
+    GreenCircle(int bSpeed, int bWidth, int bHeight) {
+        if (bSpeed > 0) {
+            this.bSpeed = bSpeed;
+        } else {//default value if the inputed speed is non positive
+            this.bSpeed = 1;
+        }
         if (bWidth > 0) {
             this.bWidth = bWidth;
         } else {//default value if the inputed width is non positive
@@ -34,8 +40,8 @@ class GreenCircle {
         timer.start();
     }
 
-    public static void main(int ballWidth, int ballHeight) {
-        GreenCircle g = new GreenCircle(ballWidth, ballHeight);
+    public static void main(int ballSpeed, int ballWidth, int ballHeight) {
+        GreenCircle g = new GreenCircle(ballSpeed, ballWidth, ballHeight);
     }
 
     class ThisPanel extends JPanel {//panel which contains the ball and it's flat background
@@ -53,14 +59,14 @@ class GreenCircle {
     class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent event) {
             if (xPos) { //If the ball is moving in the positive x direction, the x coordinate of the ball will increase
-                x++;
+                x += bSpeed;
             } else { // Otherwise it will decrease
-                x--;
+                x -= bSpeed;
             }
             if (yPos) {   
-                y++;
+                y += bSpeed;
             } else {
-                y--;
+                y -= bSpeed;
             }
 
             if (x <= 0) {//if the ball contacts the left wall
