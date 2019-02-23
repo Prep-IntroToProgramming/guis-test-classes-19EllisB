@@ -40,8 +40,12 @@ class GreenCircle {
         timer.start();
     }
 
-    public static void main(int ballSpeed, int ballWidth, int ballHeight) {
+    public static void altMain(int ballSpeed, int ballWidth, int ballHeight) {
         GreenCircle g = new GreenCircle(ballSpeed, ballWidth, ballHeight);
+    }
+    
+    public static void main(String[] args) {
+        altMain(2, 100, 100);
     }
 
     class ThisPanel extends JPanel {//panel which contains the ball and it's flat background
