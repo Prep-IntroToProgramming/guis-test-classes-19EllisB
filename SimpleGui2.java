@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 
 public class SimpleGui2{ 
     public SimpleGui2() {
@@ -9,6 +10,7 @@ public class SimpleGui2{
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(panel);
+        frame.setLayout(new FlowLayout());
         //frame.add(panel2);
         //frame.add(label);
         frame.setSize(panel.imageIcon.getIconWidth() + 20, panel.imageIcon.getIconHeight() + 45);

@@ -13,8 +13,14 @@ public class ImagePanel extends JPanel
         
         //g.setColor(Color.blue);
         //g.fillRect(20, 50,100,100);
-
-
-
+    }
+    
+    @Override 
+    public Dimension getPreferredSize() {
+        if (imageIcon != null) {
+            return new Dimension(imageIcon.getIconWidth(), imageIcon.getIconHeight());
+        } else {
+            return super.getPreferredSize();
+        }
     }
 }
